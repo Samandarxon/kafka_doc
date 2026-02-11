@@ -1,0 +1,17 @@
+[Unit]
+Description=Apache Kafka 4.1.1 (KRaft)
+After=network.target
+
+[Service]
+Type=simple
+User=jack
+Group=jack
+WorkingDirectory=/opt/kafka
+Environment="JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64"
+ExecStart=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server.properties
+ExecStop=/opt/kafka/bin/kafka-server-stop.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
